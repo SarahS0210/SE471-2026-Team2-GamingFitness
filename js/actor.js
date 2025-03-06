@@ -354,7 +354,7 @@ class Background {
         // Load the current frame of the background image if not already loaded
         if (this.img_data[this.cur_frame] == null) {
             this.img_data[this.cur_frame] = new Image();
-            this.img_data[this.cur_frame].src = 'imgs/' + this.path + '/default/' + (this.cur_frame + 1) + '.png';
+            this.img_data[this.cur_frame].src = 'backgrounds/' + this.path + '/default/' + (this.cur_frame + 1) + '.png';
         }
 
         // Draw the current frame of the background image on the canvas
