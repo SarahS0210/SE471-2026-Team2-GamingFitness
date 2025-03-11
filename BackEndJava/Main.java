@@ -9,3 +9,4 @@ public class Main {
     System.out.println(player.getPassword());
     System.out.println(player.getEmail());
   }
+}
