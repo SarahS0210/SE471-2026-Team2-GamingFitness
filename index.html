@@ -55,29 +55,37 @@
         <!-- ============ MENU SCREEN (Hidden By Default) ============ -->
         <div id="selection-screen" class="model">
             <h2>Choose Your Workout Type</h2>
+
+            <style>
+                .selection-box-1 {position: absolute; z-index: 100;  width: 100%; top:1%; left:0%; margin: 20px; }
+                .selection-box-2 {position: absolute; z-index: 100;  width: 100%; top:1%; left:25%; margin: 20px; }
+                .selection-box-3 {position: absolute; z-index: 100;  width: 100%; top:1%; left:50%; margin: 20px; }
+                .selection-box-4 {position: absolute; z-index: 100;  width: 100%; top:1%; left:75%; margin: 20px; }
+            </style>
+            
             <div class="selection-container">
-                <div class="selection-box">
-                    <img src="sprites\PowerGolem\Tenderbud\Idle\0.png" alt="Endurance Training">
+                <div class="selection-box-1">
+                    <img src="sprites\MightGolem\Tenderbud\Idle\5.png" alt="Endurance Training">
                     <p>Improve your stamina with endurance exercises.</p>
-                    <button id="but_start" onclick="game();" style="font-size:25px">Endurance</button>
+                    <button id="but_start" onclick="Endurance();" style="font-size:25px">Endurance</button>
                     <!-- <button onclick="startGame('Endurance')">Select</button> -->
                 </div>
-                <div class="selection-box">
-                    <img src="sprites\PowerGolem\Tenderbud\Idle\3.png" alt="Strength Training">
+                <div class="selection-box-2">
+                    <img src="sprites\MightGolem\Tenderbud\Idle\3.png" alt="Strength Training">
                     <p>Build muscle and strength with targeted workouts.</p>
-                    <button id="but_start" onclick="game();" style="font-size:25px">Strength</button>
+                    <button id="but_start" onclick="Strength();" style="font-size:25px">Strength</button>
                     <!-- <button onclick="startGame('Strength')">Select</button> --> 
                 </div>
-                <div class="selection-box">
-                    <img src="sprites\PowerGolem\Tenderbud\Idle\5.png" alt="Yoga & Flexibility">
+                <div class="selection-box-3">
+                    <img src="sprites\PowerGolem\Tenderbud\Idle\1.png" alt="Yoga & Flexibility">
                     <p>Enhance flexibility and relaxation through yoga.</p>
-                    <button id="but_start" onclick="game();" style="font-size:25px">Yoga</button>
+                    <button id="but_start" onclick="Yoga();" style="font-size:25px">Yoga</button>
                 <!-- <button onclick="startGame('Yoga')">Select</button> -->
                 </div>
-                <div class="selection-box">
-                    <img src="sprites\PowerGolem\Tenderbud\Idle\7.png" alt="Cardio Training">
+                <div class="selection-box-4">
+                    <img src="sprites\VampiricOverlord\Tenderbud\Shooting\7.png" alt="Cardio Training">
                     <p>Boost heart health with high-intensity cardio.</p>
-                    <button id="but_start" onclick="game();" style="font-size:25px">Cardio</button>
+                    <button id="but_start" onclick="Cardio();" style="font-size:25px">Cardio</button>
                     <!-- <button onclick="startGame('Cardio')">Select</button> -->
                 </div>
             </div>
@@ -87,7 +95,13 @@
 
     <script type="text/javascript" src="js/actor.js"></script>
     <script type="text/javascript">
-//=     ------JAVASCRIPT CODE STARTS HERE------     =\\
+
+
+
+
+
+
+//:::::::::::::::::::::::::::=     >------JAVASCRIPT CODE STARTS HERE------<     =:::::::::::::::::::::::::::\\
 
 //===================VARIABLES====================== 
         const BACKGROUND = 0;
@@ -106,10 +120,9 @@
         //NEW
         drawables[PROJECTILE] = []
         
-        //Sets the background
-        drawables[BACKGROUND].push(new Background('beach', 7))
-        
-//===================FUNCTIONS====================== 
+
+
+//===================WEBSITE FUNCTIONS====================== 
 
         website = async () => {
             resize();
@@ -180,13 +193,20 @@
             });
         }
 
+
+
+//===================GAME FUNCTIONS====================== 
+
+//=======LEVELS=======
         //show the game screen
-        game = () => {
+        Endurance = () => {
             $('#main').hide();
             $('#selection-screen').hide();
-            //get_player("VampiricOverlord");
-            get_player("PowerGolem");
-            //SummonHorde1("MightGolem");
+
+            //Sets the background
+            drawables[BACKGROUND].push(new Background('castle', 7))
+
+            get_player("VampiricOverlord");
             SummonHorde1("MightGolem");
 
             //---------SET FRAME RATE HERE------------
@@ -194,13 +214,61 @@
             console.log("FUNCTION: game() /IS RUNNING")
         }
 
+        Strength = () => {
+            $('#main').hide();
+            $('#selection-screen').hide();
+
+            //Sets the background
+            drawables[BACKGROUND].push(new Background('castle', 7))
+
+            get_player("VampiricOverlord");
+            SummonHorde1("MightGolem");
+
+            //---------SET FRAME RATE HERE------------
+            setInterval(draw_loop, 5000 / 30);
+            console.log("FUNCTION: game() /IS RUNNING")
+        }
+
+        Yoga = () => {
+            $('#main').hide();
+            $('#selection-screen').hide();
+
+            //Sets the background
+            drawables[BACKGROUND].push(new Background('beach', 7))
+
+            get_player("PowerGolem");
+            SummonHorde1("MightGolem");
+
+            //---------SET FRAME RATE HERE------------
+            setInterval(draw_loop, 5000 / 30);
+            console.log("FUNCTION: game() /IS RUNNING")
+        }
+
+        Cardio = () => {
+            $('#main').hide();
+            $('#selection-screen').hide();
+
+            //Sets the background
+            drawables[BACKGROUND].push(new Background('castle', 7))
+
+            get_player("VampiricOverlord");
+            SummonHorde1("MightGolem");
+
+            //---------SET FRAME RATE HERE------------
+            setInterval(draw_loop, 5000 / 30);
+            console.log("FUNCTION: game() /IS RUNNING")
+        }
+
+//====================
+
+
         //Gathers animation data for select sprites and pushes each as an Actor
-        get_player = async () => {
+        get_player = async (sprite) => {
 
             //Grabs the Players sprites from the json, sets as actor
-            let animdataxhr = await fetch("sprites/PowerGolem/animationData.json")
+            let animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
             let animdata = await animdataxhr.json()
-            const Player = new Actor("PowerGolem",animdata, 1, 1, 0, 0, 0, "Idle","False","True","PLAYER");
+            const Player = new Actor(sprite,animdata, 1, 1, 0, 0, 0, "Idle","False","True","PLAYER");
 
             //Pushes both actors into the foreground
             drawables[FOREGROUND].push(Player);
@@ -281,8 +349,8 @@
             website();
             
 
-            get_player();
-            SummonHorde1("MightGolem");
+            //get_player();
+            //SummonHorde1("MightGolem");
 
             //---------SET FRAME RATE HERE------------
             //setInterval(draw_loop, 5000 / 30);
@@ -340,59 +408,11 @@
                         console.log("SPACE KEY PRESSED")
                         d.changeAnimation('Shooting');
                         shoot_projectile();
-                        /*
-                        d.state = 'Shooting'
-                        //NEW indicates animation change
-                        d.anim_change = 'True'
-                        //you could also just directly set cur_frame = 0 with:
-                        //d.cur_frame = 0;
-
-                        //NEW preloads the first frame of shooting animation to avoid blank frame
-                        d.sprite_json[d.root_e][d.state][0]['img'] = new Image();
-                        // Set image source
-                        d.sprite_json[d.root_e][d.state][0]['img'].src = d.name + '/' + d.root_e + '/' + d.state + '/' + 0 + '.png';
-                        shoot_projectile()
-                        break
-                        */
                 }
             }
             })
         
         };
-
-
-        /*FLAWED KEY INPUT
-        drawables[FOREGROUND].forEach((d) => {
-                console.log("SPRITE CALLED:")
-                console.log(d)
-                console.log(" ")
-                switch (e.key) {
-
-                    case "ArrowLeft":
-                        d.x_v = -10
-                        d.state = 'walk_W'
-                        break
-                    case "ArrowUp":
-                        d.y_v = -10
-                        d.state = 'walk_N'
-                        break
-                    case "ArrowRight":
-                        d.x_v = 10
-                        d.state = 'walk_E'
-                        break
-                    case "ArrowDown":
-                        d.y_v = 10
-                        d.state = 'walk_S'
-                        break
-                    case " ":
-                        console.log("SPACE KEY PRESSED")
-                        d.state = 'Shooting'
-                        shoot_projectile()
-                        break
-                }
-            })
-        };
-        */
 
 
         document.body.onkeyup = (e) => {
