@@ -64,6 +64,8 @@ class Actor {
 
         }
 
+        //%%DEBUG
+        /*
         if(this.state == "Shooting"){
             console.log("LENGTH OF ANIMATION");
             console.log(this.sprite_json[this.root_e][this.state].length);
@@ -71,7 +73,7 @@ class Actor {
             console.log("FRAME NUM");
             console.log(this.cur_frame);
         }
-
+        */
 
         // Preload sprite images if not already loaded
         //if (this.sprite_json[this.root_e][this.state][this.cur_frame]['img'] == null) {
@@ -95,7 +97,8 @@ class Actor {
         // Handle boundary conditions to keep the actor within the canvas
         if (this.x >= (window.innerWidth - this.sprite_json[this.root_e][this.state][this.cur_frame]['w'])) {
             // If actor moves beyond the right boundary
-            console.log("BOUNDRY HIT");
+            //%%DEBUG
+            //console.log("BOUNDRY HIT");
 
             //Check if projectile crossed boundry
             if(this.ID == "PROJECTILE"){
@@ -112,7 +115,8 @@ class Actor {
 
         } else if (this.x <= 0) {
             // If actor moves beyond the left boundary
-            console.log("BOUNDRY HIT");
+            //%%DEBUG
+            //console.log("BOUNDRY HIT");
 
             //Check if projectile crossed boundry
             if(this.ID == "PROJECTILE"){
