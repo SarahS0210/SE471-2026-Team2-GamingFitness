@@ -16,6 +16,7 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id; //the user's id
   private String userName; //the user's name
+  private String password;
   private String style; //the workout style that a user selects
   public User() {} //constructor!
 
@@ -23,7 +24,9 @@ public class User {
   public String getUserName() {
     return userName;
   }
-
+  public String getPassword() {
+    return password;
+  }
   public void setUserName(String userName) {
     this.userName = userName;
   }
