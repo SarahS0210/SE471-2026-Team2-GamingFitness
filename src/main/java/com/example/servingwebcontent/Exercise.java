@@ -1,37 +1,51 @@
 package com.example.servingwebcontent;
-
-import jakarta.persistence.Entity;
+import jakarta.persistence.Entity; // we're using a hash map to have the whole workout
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table; //including vectors because they have less arrays than arrays
+@Entity //entity means this is being stored in our database
+@Table(name = "app_user")  // Creating a table name that isn't a reserved keyword
 
-@Entity
-public class Exercise {
+/*
+ * This class represents our user. Each user has a id, username, and training style. 
+ */
+public class User {
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private String style; //the training style of exercise, so cardio, weights, or yoga
-  private String muscleGroup; //the type of muscle that a given exercise uses ex: biceps, chest, triceps etc.
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id; //the user's id
+  private String userName; //the user's name
+  private String password;
+  private String style; //the workout style that a user selects
+  WorkoutProgram program; //the workout program that the user uses
 
-  
+  public User() {} //constructor!
 
-  protected Exercise() {}
-
-  public Exercise(String style) {
-    this.style = style;
-    
+  //methods
+  public String getUserName() {
+    return userName;
+  }
+  public String getPassword() {
+    return password;
+  }
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
-  @Override
-  public String toString() {
-    return String.format(
-        "User[style='%s',]",
-        style);
+  public long getId() {
+    return id;
   }
-  public String getStyle() {
-    return this.style;
+ public void setId(long id) {
+    this.id = id;
   }
-  public String getmuscleGroup() {
-    return this.muscleGroup;
+  public long getStyle() {
+    return id;
   }
+ public void setStyle(String style) {
+    this.style=style;
+  }
+
+
+
 }
