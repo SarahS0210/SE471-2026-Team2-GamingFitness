@@ -60,7 +60,8 @@
         
         <!-- ============ MENU SCREEN (Hidden By Default) ============ -->
         <div id="selection-screen" class="model">
-            <h2>Choose Your Workout Type</h2>
+            <h2 class="selection-title">Choose Your Workout Type</h2>
+            <span class="close-menu" onclick="closeMenu()">&times;</span>
 
             <style>
                 .selection-box-1 {position: absolute; z-index: 100;  width: 100%; top:1%; left:0%; margin: 20px; }
@@ -70,28 +71,28 @@
             </style>
             
             <div class="selection-container">
-                <div class="selection-box-1">
+                <div class="selection-box">
                     <img src="sprites\MightGolem\Tenderbud\Idle\5.png" alt="Endurance Training">
                     <p>Improve your stamina with endurance exercises.</p>
-                    <button id="but_start" onclick="Endurance();" style="font-size:25px">Endurance</button>
+                    <button onclick="Endurance();">Endurance</button>
                     <!-- <button onclick="startGame('Endurance')">Select</button> -->
                 </div>
-                <div class="selection-box-2">
+                <div class="selection-box">
                     <img src="sprites\MightGolem\Tenderbud\Idle\3.png" alt="Strength Training">
                     <p>Build muscle and strength with targeted workouts.</p>
-                    <button id="but_start" onclick="Strength();" style="font-size:25px">Strength</button>
+                    <button onclick="Strength();">Strength</button>
                     <!-- <button onclick="startGame('Strength')">Select</button> --> 
                 </div>
-                <div class="selection-box-3">
+                <div class="selection-box">
                     <img src="sprites\PowerGolem\Tenderbud\Idle\1.png" alt="Yoga & Flexibility">
                     <p>Enhance flexibility and relaxation through yoga.</p>
-                    <button id="but_start" onclick="Yoga();" style="font-size:25px">Yoga</button>
+                    <button onclick="Yoga();">Yoga</button>
                 <!-- <button onclick="startGame('Yoga')">Select</button> -->
                 </div>
-                <div class="selection-box-4">
+                <div class="selection-box">
                     <img src="sprites\VampiricOverlord\Tenderbud\Shooting\7.png" alt="Cardio Training">
                     <p>Boost heart health with high-intensity cardio.</p>
-                    <button id="but_start" onclick="Cardio();" style="font-size:25px">Cardio</button>
+                    <button onclick="Cardio();">Cardio</button>
                     <!-- <button onclick="startGame('Cardio')">Select</button> -->
                 </div>
             </div>
@@ -162,6 +163,12 @@
         //close login popup
         closeLogin = () => {
             document.getElementById("login-model").style.display = "none";
+        }
+
+        //close menu popup
+        closeMenu = () => {
+            $('#selection-screen').fadeOut(300); // Smoothly show selection screen
+            $('#main-menu').fadeIn(300); // Hide main menu
         }
 
 //===================GAME FUNCTIONS====================== 
