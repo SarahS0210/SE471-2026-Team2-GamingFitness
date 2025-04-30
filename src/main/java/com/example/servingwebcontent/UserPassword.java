@@ -1,16 +1,12 @@
-/*package com.example.servingwebcontent;
+package com.example.servingwebcontent;
 
-import java.util.List;
+import org.springframework.data.rest.core.config.Projection;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-@RepositoryRestResource(collectionResourceRel = "users", path = "app_users")
-public interface UserRepository extends PagingAndSortingRepository<User, Long>, CrudRepository<User,Long> {
-
-  List<User> findByUserName(@Param("userName") String userName);
-
+/*
+This is a Projection to expose our user password for our js fronend. This is by no means secure, this is just a way for us to access it for the time being.
+*/
+@Projection(name = "UserPassword", types = {User.class})
+public interface UserPassword {
+    String getPassword(); // get password
 }
-*/ 
+
