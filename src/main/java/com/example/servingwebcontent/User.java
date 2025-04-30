@@ -50,3 +50,4 @@ public class User {
  public void setShots(int shots) {
     this.shots=shots;
   }
+}
