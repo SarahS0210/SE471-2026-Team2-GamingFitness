@@ -37,8 +37,8 @@ public class User {
  public void setId(long id) {
     this.id = id;
   }
-  public long getStyle() {
-    return id;
+  public String getStyle() {
+    return this.style;
   }
  public void setStyle(String style) {
     this.style=style;
