@@ -5,7 +5,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table; // this is for the @table annotation to make a custom table with our sql to avoid clobbering standard values
 @Entity //entity means this is being stored in our database
-@Table(name = "app_user")  // Creating a table name that isn't a reserved keyword
+@Table(name = "app_users")  // Creating a table name that isn't a reserved keyword
 
 /*
  * This class represents our user. Each user has a id, username, and training style. 
@@ -18,6 +18,7 @@ public class User {
   private String userName; //the user's name
   private String password;
   private String style; //the workout style that a user selects
+  private int shots;
   public User() {} //constructor!
 
   //methods
@@ -37,13 +38,15 @@ public class User {
  public void setId(long id) {
     this.id = id;
   }
-  public long getStyle() {
-    return id;
+  public String getStyle() {
+    return this.style;
   }
  public void setStyle(String style) {
     this.style=style;
   }
-
-
-
-}
+  public int getShots() {
+    return this.shots;
+  }
+ public void setShots(int shots) {
+    this.shots=shots;
+  }
