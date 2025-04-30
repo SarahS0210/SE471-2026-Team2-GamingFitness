@@ -60,8 +60,7 @@
         
         <!-- ============ MENU SCREEN (Hidden By Default) ============ -->
         <div id="selection-screen" class="model">
-            <h2 class="selection-title">Choose Your Workout Type</h2>
-            <span class="close-menu" onclick="closeMenu()">&times;</span>
+            <h2>Choose Your Workout Type</h2>
 
             <style>
                 .selection-box-1 {position: absolute; z-index: 100;  width: 100%; top:1%; left:0%; margin: 20px; }
@@ -71,28 +70,28 @@
             </style>
             
             <div class="selection-container">
-                <div class="selection-box">
+                <div class="selection-box-1">
                     <img src="sprites\MightGolem\Tenderbud\Idle\5.png" alt="Endurance Training">
                     <p>Improve your stamina with endurance exercises.</p>
-                    <button onclick="Endurance();">Endurance</button>
+                    <button id="but_start" onclick="Endurance();" style="font-size:25px">Endurance</button>
                     <!-- <button onclick="startGame('Endurance')">Select</button> -->
                 </div>
-                <div class="selection-box">
+                <div class="selection-box-2">
                     <img src="sprites\MightGolem\Tenderbud\Idle\3.png" alt="Strength Training">
                     <p>Build muscle and strength with targeted workouts.</p>
-                    <button onclick="Strength();">Strength</button>
+                    <button id="but_start" onclick="Strength();" style="font-size:25px">Strength</button>
                     <!-- <button onclick="startGame('Strength')">Select</button> --> 
                 </div>
-                <div class="selection-box">
+                <div class="selection-box-3">
                     <img src="sprites\PowerGolem\Tenderbud\Idle\1.png" alt="Yoga & Flexibility">
                     <p>Enhance flexibility and relaxation through yoga.</p>
-                    <button onclick="Yoga();">Yoga</button>
+                    <button id="but_start" onclick="Yoga();" style="font-size:25px">Yoga</button>
                 <!-- <button onclick="startGame('Yoga')">Select</button> -->
                 </div>
-                <div class="selection-box">
+                <div class="selection-box-4">
                     <img src="sprites\VampiricOverlord\Tenderbud\Shooting\7.png" alt="Cardio Training">
                     <p>Boost heart health with high-intensity cardio.</p>
-                    <button onclick="Cardio();">Cardio</button>
+                    <button id="but_start" onclick="Cardio();" style="font-size:25px">Cardio</button>
                     <!-- <button onclick="startGame('Cardio')">Select</button> -->
                 </div>
             </div>
@@ -112,7 +111,49 @@
 
 
 //:::::::::::::::::::::::::::=     >------JAVASCRIPT CODE STARTS HERE------<     =:::::::::::::::::::::::::::\\
-//test
+
+
+
+//:::::::::::::::::::; test java connection section ::::::::::::::::;///
+    // Basic GET request using Fetch API
+    /*
+fetch('/http://localhost:8080app_users/1')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+*/
+
+  // Minimal POST request
+fetch('http://localhost:8080/app_users', { //making a fetch request to pull all the users
+  method: 'POST', //we have to declare the POST method to use it. A POST creates a new instance, while a PUT request changes whats there
+  headers: { 
+    'Content-Type': 'application/json' //declaring content type as json
+  },
+  body: JSON.stringify({ //this is setting up the JSON we want to pass
+    userName: 'Frodo_Baggins', //this sets up the user's userName
+    password: 'Shire', //setting password, NOT SECURE JUST A TEST
+    style: 'BodyBuilding' //setting user style
+  })
+})
+  .then(response => response.json())  //this handles the Promise returned by fetch(). Response is the HTTP response object returned from the server, response.json is a method that reads the response body and parses it as JSON. It also returns a Promise with the parsed data
+  .then(data => console.log(data)); //This .then recieves the resolved value from the previous Promise (Previous JSON data). datam is the actual Javascript object parsed from the JSON response. Console.log(data) simply outputs the data to the console.
+
+  // Minimal POST request
+fetch('http://localhost:8080/app_users/2', {
+  method: 'PUT', //we have to declare the PUT method to use it. A PUT creates a new instance, while a PUT request changes whats there
+  headers: {
+    'Content-Type': 'application/json' //declaring content type as json
+  },
+  body: JSON.stringify({ //this is setting up the JSON we want to pass
+    userName: 'Gandalf_The_Grey',//this sets up the user's userName
+    password: 'Shire',//setting password, NOT SECURE JUST A TEST
+    style: 'PowerBuilding'//setting user style
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+// That's it! This sends a GET request to the endpoint and logs the response.
 //===================VARIABLES====================== 
         const BACKGROUND = 0;
         const FOREGROUND = 1;
@@ -163,12 +204,6 @@
         //close login popup
         closeLogin = () => {
             document.getElementById("login-model").style.display = "none";
-        }
-
-        //close menu popup
-        closeMenu = () => {
-            $('#selection-screen').fadeOut(300); // Smoothly show selection screen
-            $('#main-menu').fadeIn(300); // Hide main menu
         }
 
 //===================GAME FUNCTIONS====================== 
