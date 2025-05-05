@@ -30,6 +30,9 @@ class Actor {
 
         //NEW
         this.ID = ID;
+
+        // Callback when projectile goes off screen
+        this.onOutOfScreen = null;
     }
 
 
@@ -37,8 +40,15 @@ class Actor {
     draw() {
         var ctx = context; // Get the canvas context
 
+        // Check if projectile is off screen
+        if (this.ID === "PROJECTILE") {
+            this.x += this.x_v;
 
-        
+            if (this.x > canvas.width) {
+                this.exist = "False";
+                if (this.onOutOfScreen) this.onOutOfScreen();
+            }
+        }    
 
         
         if(this.exist == "True"){
@@ -95,7 +105,7 @@ class Actor {
 //===================BOUNDRIES======================  
 
         // Handle boundary conditions to keep the actor within the canvas
-        if (this.x >= (window.innerWidth - this.sprite_json[this.root_e][this.state][this.cur_frame]['w'])) {
+        if (this.x >= window.innerWidth - this.width) {
             // If actor moves beyond the right boundary
             //%%DEBUG
             //console.log("BOUNDRY HIT");
@@ -107,7 +117,7 @@ class Actor {
 
             //this.exist = "False";
             this.x_v = this.y_v = 0;
-            this.x = (window.innerWidth - this.sprite_json[this.root_e][this.state][this.cur_frame]['w']) - 1;
+            this.x = window.innerWidth - this.width - 1;
             //this.state = 'Idle';
             this.cur_frame = 0;
 
@@ -160,32 +170,51 @@ class Actor {
     //drawables[FOREGROUND][2].changeAnimation('Damaged');
     if(this.ID == "PROJECTILE"){
 
-        for(let i = 1; i < drawables[FOREGROUND].length; i++){
-            /* DEBUG
-            console.log("================");
-            console.log("ARRAY ELEMENT: " + i);
-            console.log(drawables[FOREGROUND][i].ID);
-            console.log("================");
-            */
-            if(
-                this.x + this.width >= drawables[FOREGROUND][i].x &&
-                this.x <= drawables[FOREGROUND][i].x + drawables[FOREGROUND][i].width &&
-                this.y + this.height >= drawables[FOREGROUND][i].y && 
-                this.y <= drawables[FOREGROUND][i].y + drawables[FOREGROUND][i].height
-            ){
+        // for(let i = 1; i < drawables[FOREGROUND].length; i++){
+        //     /* DEBUG
+        //     console.log("================");
+        //     console.log("ARRAY ELEMENT: " + i);
+        //     console.log(drawables[FOREGROUND][i].ID);
+        //     console.log("================");
+        //     */
+        //     if(
+        //         this.x + this.width >= drawables[FOREGROUND][i].x &&
+        //         this.x <= drawables[FOREGROUND][i].x + drawables[FOREGROUND][i].width &&
+        //         this.y + this.height >= drawables[FOREGROUND][i].y && 
+        //         this.y <= drawables[FOREGROUND][i].y + drawables[FOREGROUND][i].height
+        //     ){
                 
-                //ENEMY HIT
-                if(drawables[FOREGROUND][i].ID == "ENEMY"){
-                    drawables[FOREGROUND][i].changeAnimation('Damaged');
-                    setTimeout(() => {
-                        drawables[FOREGROUND][i].exist = "False";
-                    }, 1000);
+                // //ENEMY HIT
+                // if(drawables[FOREGROUND][i].ID == "ENEMY"){
+                //     drawables[FOREGROUND][i].changeAnimation('Damaged');
+                //     setTimeout(() => {
+                //         drawables[FOREGROUND][i].exist = "False";
+                //     }, 1000);
 
-                    //drawables[FOREGROUND].splice(i,1);
+                //     //drawables[FOREGROUND].splice(i,1);
+                // }
+
+            for (let actor of drawables[FOREGROUND]) {
+                if (!actor || actor.exist !== "True") continue; // skip removed or false actors
+            
+                if (
+                    this.x + this.width >= actor.x &&
+                    this.x <= actor.x + actor.width &&
+                    this.y + this.height >= actor.y &&
+                    this.y <= actor.y + actor.height
+                ) {
+                    // ENEMY HIT
+                    if (actor.ID == "ENEMY") {
+                        actor.changeAnimation('Damaged');
+                        setTimeout(() => {
+                            actor.exist = "False";
+                        }, 1000);
+                    }
                 }
             }
-
         }
+
+        this,this.cur_frame += 1;
     }
 
 
@@ -320,22 +349,21 @@ class Actor {
         }
         */
 
-        // Increment the current frame counter
-        this.cur_frame = this.cur_frame + 1;
+        // // Increment the current frame counter
+        // this.cur_frame = this.cur_frame + 1;
 
-        // Removes sprites removed during program
-        /*
-        for(let i = 1; i < drawables[FOREGROUND].length; i++){
-            if(drawables[FOREGROUND][i].exist == "False"){
-                drawables[FOREGROUND].splice(i,1);
-            }
-        }
-        */
+        // // Removes sprites removed during program
+        // /*
+        // for(let i = 1; i < drawables[FOREGROUND].length; i++){
+        //     if(drawables[FOREGROUND][i].exist == "False"){
+        //         drawables[FOREGROUND].splice(i,1);
+        //     }
+        // }
+        // */
        
-        // Return false to prevent browser default behavior
-        return false;
+        // // Return false to prevent browser default behavior
+        // return false;
         }
-    }
 
     
     // Method to change animations on the canvas
