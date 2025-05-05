@@ -18,6 +18,7 @@ public class User {
   private String userName; //the user's name
   private String password;
   private String style; //the workout style that a user selects
+  private String avatar; //the avatar the user chooses
   private int shots;
   public User() {} //constructor!
 
