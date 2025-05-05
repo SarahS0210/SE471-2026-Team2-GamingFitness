@@ -101,6 +101,15 @@
         
     </div> 
 
+    <!-- ============ LEVEL SCREEN ============ -->
+    <div id="level-select" style="display:none;">
+        <div id="level-select-content">
+            <h2>Select Level</h2>
+            <button onclick="startLevel(1)">Level 1</button>
+            <button onclick="startLevel(2)">Level 2</button>
+        </div>
+    </div>
+
     <script src="js/workoutlist.js"></script>
     <script type="text/javascript" src="js/actor.js"></script>
     <script src="js/signup.js"></script>
@@ -156,14 +165,14 @@
 
         // Workout list setup
         const workout = new WorkoutList();
-        workout.setName("Endurance Workout");
-        workout.addExercise("5-10 Min Warm Up");
-        workout.addExercise("2 x 15 Squat (Bodyweight)");
-        workout.addExercise("2 x 12 Kneeling Push Ups");
-        workout.addExercise("3 x 10 Superman");
-        workout.addExercise("3 x 12 Glute Bridge");
-        workout.addExercise("3 x 20 Mountain Climber");;
-        workout.nextExercise();
+        // workout.setName("Endurance Workout");
+        // workout.addExercise("5-10 Min Warm Up");
+        // workout.addExercise("2 x 15 Squat (Bodyweight)");
+        // workout.addExercise("2 x 12 Kneeling Push Ups");
+        // workout.addExercise("3 x 10 Superman");
+        // workout.addExercise("3 x 12 Glute Bridge");
+        // workout.addExercise("3 x 20 Mountain Climber");
+        // workout.nextExercise();
         
         // When exercise changes, respawn enemies
         workout.setOnExerciseChange(() => {
@@ -222,16 +231,18 @@
         Endurance = () => {
             $('#main').hide();
             $('#selection-screen').hide();
+            $('#level-select').fadeIn(300);  // SHOW THE LEVEL SELECT SCREEN
+            window.selectedWorkout = "Endurance";
 
-            //Sets the background
-            drawables[BACKGROUND].push(new Background('castle', 7))
+            // //Sets the background
+            // drawables[BACKGROUND].push(new Background('castle', 7))
 
-            get_player("VampiricOverlord");
-            SummonHorde1("MightGolem");
+            // get_player("VampiricOverlord");
+            // SummonHorde1("MightGolem");
 
-            //---------SET FRAME RATE HERE------------
-            setInterval(draw_loop, 5000 / 30);
-            console.log("FUNCTION: game() /IS RUNNING")
+            // //---------SET FRAME RATE HERE------------
+            // setInterval(draw_loop, 5000 / 30);
+            // console.log("FUNCTION: game() /IS RUNNING")
         }
 
         Strength = () => {
@@ -278,6 +289,42 @@
             setInterval(draw_loop, 5000 / 30);
             console.log("FUNCTION: game() /IS RUNNING")
         }
+
+        //START LEVEL
+        function startLevel(level) {
+            $('#level-select').hide();
+            $('#main').hide();
+
+            drawables[BACKGROUND].push(new Background('castle', 7))
+            get_player("VampiricOverlord");
+            SummonHorde1("MightGolem");
+
+            workout.setName("Endurance Workout - Level " + level);
+            workout.exercises = [];
+
+            if (level === 1) {
+                workout.setName("Endurance Workout Level 1");
+                workout.addExercise("5-10 Min Warm Up");
+                workout.addExercise("2 x 15 Squat (Bodyweight)");
+                workout.addExercise("2 x 12 Kneeling Push Ups");
+                workout.addExercise("3 x 10 Superman");
+                workout.addExercise("3 x 12 Glute Bridge");
+                workout.addExercise("3 x 20 Mountain Climber");
+            } else if (level === 2) {
+                workout.setName("Endurance Workout Level 2");
+                workout.addExercise("5-10 Min Warm Up");
+                workout.addExercise("3 x 12 Bulgarian Split Squat (Each leg)");
+                workout.addExercise("3 x 15 Push Ups");
+                workout.addExercise("3 x 12 Inverted Row");
+                workout.addExercise("3 x 8 Nordic Hamstring Curls");
+                workout.addExercise("3 x 12 Single Leg Glute Bridge (Each leg)");
+                workout.addExercise("3 x 15 Superman");
+            }
+
+            workout.nextExercise();
+            setInterval(draw_loop, 5000 / 30);
+        }
+
 
 //====================
 
@@ -403,6 +450,8 @@
             bullet.onOutOfScreen = () => {
                 if (!workout.completed) {
                     workout.nextExercise();
+                } else {
+                    showEndScreen();
                 }
             };
 
@@ -478,6 +527,8 @@
                         SHOTS++;
                         if (!workout.completed) {
                             workout.nextExercise();
+                        } else {
+                            showEndScreen();
                         }
                         break;
                 }
@@ -505,7 +556,21 @@
             })
         };
 //===================================================
+    function showEndScreen() {
+        document.getElementById("end-screen").style.display = "flex";
+    }
+
+    function goHome() {
+        location.reload(); // This reloads and goes back to index.html start screen
+    }
     </script>
+
+<!-- ============= HOME SCREEN BUTTON AFTER COMPLETED WORKOUT =============-->
+    <div id="end-screen" style="display:none;">
+        <div id="end-screen-content">
+            <button id="home-button" onclick="goHome()">Home Screen</button>
+        </div>
+    </div>
 
 </body>
 </html>

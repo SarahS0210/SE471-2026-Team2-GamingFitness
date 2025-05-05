@@ -242,3 +242,78 @@ body {
     cursor: pointer;
     z-index: 999;
 }
+
+/* WORKOUT END BUTTONS */
+#end-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Above everything */
+}
+
+#end-screen-content {
+    text-align: center;
+}
+
+#home-button {
+    font-size: 40px;
+    padding: 20px 40px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#home-button:hover {
+    background-color: #00bfff;
+}
+
+/* LEVEL SELECT */
+#level-select {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+}
+
+#level-select-content {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+#level-select-content h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+#level-select-content button {
+    font-size: 24px;
+    padding: 10px 30px;
+    margin: 10px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#level-select-content button:hover {
+    background-color: #00bfff;
+}
