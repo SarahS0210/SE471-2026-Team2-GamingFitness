@@ -113,6 +113,7 @@ class Actor {
             //Check if projectile crossed boundry
             if(this.ID == "PROJECTILE"){
                 this.exist = "False";
+
             }
 
             //this.exist = "False";
@@ -168,7 +169,7 @@ class Actor {
 
     //need to check ID of current projectile
     //drawables[FOREGROUND][2].changeAnimation('Damaged');
-    if(this.ID == "PROJECTILE"){
+        if(this.ID == "PROJECTILE"){
 
         // for(let i = 1; i < drawables[FOREGROUND].length; i++){
         //     /* DEBUG
@@ -212,7 +213,12 @@ class Actor {
                     }
                 }
             }
+
+
+            
         }
+
+        
 
         this,this.cur_frame += 1;
     }
