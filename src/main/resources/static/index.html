@@ -73,13 +73,13 @@
             
             <div class="selection-container">
                 <div class="selection-box">
-                    <img src="sprites\MightGolem\Tenderbud\Idle\5.png" alt="Endurance Training">
+                    <img src="sprites\Juggernaut\Tenderbud\Idle\5.png" alt="Endurance Training">
                     <p>Improve your stamina with endurance exercises.</p>
                     <button onclick="Endurance();">Endurance</button>
                     <!-- <button onclick="startGame('Endurance')">Select</button> -->
                 </div>
                 <div class="selection-box">
-                    <img src="sprites\MightGolem\Tenderbud\Idle\3.png" alt="Strength Training">
+                    <img src="sprites\Juggernaut\Tenderbud\Idle\3.png" alt="Strength Training">
                     <p>Build muscle and strength with targeted workouts.</p>
                     <button onclick="Strength();">Strength</button>
                     <!-- <button onclick="startGame('Strength')">Select</button> --> 
@@ -114,7 +114,7 @@
     <div id="levelStrength-select" style="display:none;">
         <div id="level-select-content">
             <h2>Select Level</h2>
-            <button onclick="startLevelStrength(1)">Level 1AA</button>
+            <button onclick="startLevelStrength(1)">Level 1</button>
             <button onclick="startLevelStrength(2)">Level 2</button>
         </div>
     </div>
@@ -272,7 +272,7 @@
         
             if(window.selectedWorkout == "Cardio"){
             setTimeout(() => {
-                SummonHorde1("SpiderCultist");
+                SummonHorde3("SpiderCultist");
             }, 5000);
             }
 
@@ -368,7 +368,7 @@
             workout.exercises = [];
 
             if (level === 1) {
-                workout.setName("Endurance Workout Level 1");
+                workout.setName("Strength Workout Level 1");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("2 x 15 Squat (Bodyweight)");
                 workout.addExercise("2 x 12 Kneeling Push Ups");
@@ -376,7 +376,7 @@
                 workout.addExercise("3 x 12 Glute Bridge");
                 workout.addExercise("3 x 20 Mountain Climber");
             } else if (level === 2) {
-                workout.setName("Endurance Workout Level 2");
+                workout.setName("Strength Workout Level 2");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("3 x 12 Bulgarian Split Squat (Each leg)");
                 workout.addExercise("3 x 15 Push Ups");
@@ -427,7 +427,7 @@
             workout.exercises = [];
 
             if (level === 1) {
-                workout.setName("Endurance Workout Level 1");
+                workout.setName("Yoga Workout Level 1");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("2 x 15 Squat (Bodyweight)");
                 workout.addExercise("2 x 12 Kneeling Push Ups");
@@ -435,7 +435,7 @@
                 workout.addExercise("3 x 12 Glute Bridge");
                 workout.addExercise("3 x 20 Mountain Climber");
             } else if (level === 2) {
-                workout.setName("Endurance Workout Level 2");
+                workout.setName("Yoga Workout Level 2");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("3 x 12 Bulgarian Split Squat (Each leg)");
                 workout.addExercise("3 x 15 Push Ups");
@@ -478,13 +478,13 @@
 
             drawables[BACKGROUND].push(new Background('castle', 7))
             get_player("VampiricOverlord");
-            SummonHorde1("SpiderCultist");
+            SummonHorde3("SpiderCultist");
 
             workout.setName("Cardio Workout - Level " + level);
             workout.exercises = [];
 
             if (level === 1) {
-                workout.setName("Endurance Workout Level 1");
+                workout.setName("Cardio Workout Level 1");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("2 x 15 Squat (Bodyweight)");
                 workout.addExercise("2 x 12 Kneeling Push Ups");
@@ -492,7 +492,7 @@
                 workout.addExercise("3 x 12 Glute Bridge");
                 workout.addExercise("3 x 20 Mountain Climber");
             } else if (level === 2) {
-                workout.setName("Endurance Workout Level 2");
+                workout.setName("Cardio Workout Level 2");
                 workout.addExercise("5-10 Min Warm Up");
                 workout.addExercise("3 x 12 Bulgarian Split Squat (Each leg)");
                 workout.addExercise("3 x 15 Push Ups");
@@ -603,17 +603,46 @@
             const charHeight = 500;
             const y = (canvas.height / 2) - (charHeight / 2);
 
-            const Enemy1 = new Actor(sprite,animdata, 400, 900, 400, charHeight, 0, "Idle","False","True","ENEMY");
+            const Enemy1 = new Actor(sprite,animdata, 700, 550, 400, charHeight, 0, "Idle","False","True","ENEMY");
             
             //Grabs the Enemies sprites from the json, sets as actor
             animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
             animdata = await animdataxhr.json()
-            const Enemy2 = new Actor(sprite,animdata, 800, 900, 800, charHeight, 0, "Idle","False","True","ENEMY");
+            const Enemy2 = new Actor(sprite,animdata, 900, 550, 800, charHeight, 0, "Idle","False","True","ENEMY");
 
             //Grabs the Enemies sprites from the json, sets as actor
             animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
             animdata = await animdataxhr.json()
-            const Enemy3 = new Actor(sprite,animdata, 1200, 900, 1200, charHeight, 0, "Idle","False","True","ENEMY");
+            const Enemy3 = new Actor(sprite,animdata, 1100, 550, 1200, charHeight, 0, "Idle","False","True","ENEMY");
+
+            //Pushes both actors into the foreground
+            drawables[FOREGROUND].push(Enemy1);
+            drawables[FOREGROUND].push(Enemy2);
+            drawables[FOREGROUND].push(Enemy3);
+        }
+
+        //NEW TEST
+        SummonHorde3 = async (sprite) => {
+            
+            //Grabs the Enemy sprites from the json, sets as actor
+            let animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
+            let animdata = await animdataxhr.json()
+
+            // Height
+            const charHeight = 500;
+            const y = (canvas.height / 2) - (charHeight / 2);
+
+            const Enemy1 = new Actor(sprite,animdata, 400, y + 100, 400, charHeight, 0, "Idle","False","True","ENEMY");
+            
+            //Grabs the Enemies sprites from the json, sets as actor
+            animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
+            animdata = await animdataxhr.json()
+            const Enemy2 = new Actor(sprite,animdata, 800, y + 100, 800, charHeight, 0, "Idle","False","True","ENEMY");
+
+            //Grabs the Enemies sprites from the json, sets as actor
+            animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
+            animdata = await animdataxhr.json()
+            const Enemy3 = new Actor(sprite,animdata, 1200, y + 100, 1200, charHeight, 0, "Idle","False","True","ENEMY");
 
             //Pushes both actors into the foreground
             drawables[FOREGROUND].push(Enemy1);
