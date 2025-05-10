@@ -200,9 +200,11 @@ class Actor {
             
                 if (
                     this.x + this.width >= actor.x &&
-                    this.x <= actor.x + actor.width &&
-                    this.y + this.height >= actor.y &&
-                    this.y <= actor.y + actor.height
+                    this.x <= actor.x + actor.width 
+                    //X Axis collision only, since player does not need to aim thier shot
+                    //&&
+                    //this.y + this.height >= actor.y &&
+                    //this.y <= actor.y + actor.height
                 ) {
                     // ENEMY HIT
                     if (actor.ID == "ENEMY") {
