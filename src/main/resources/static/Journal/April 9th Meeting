@@ -1,8 +1,0 @@
-Attended: Judah, Uday
-Timeframe: 6pm-7:10pm
-Medium: Discord
-Discussed:
--Spring boot
--Discovered that our implementation does not function on google due to google not supporting Java. project does seem to work on firefox and safari
--discussed reinforcing our agile process so that we are more aligned with the process
--discussed future plans with spring to add more controllers and potentially integrating sql database
