@@ -10,28 +10,18 @@ public class Exercise {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private String style; //the training style of exercise, so cardio, weights, or yoga
-  private String muscleGroup; //the type of muscle that a given exercise uses ex: biceps, chest, triceps etc.
-
+  private String name; //The name of the workout
   
 
-  protected Exercise() {}
+  public Exercise() {}
 
-  public Exercise(String style) {
-    this.style = style;
-    
+  public Exercise(String name) {
+    this.name = name;
   }
 
-  @Override
-  public String toString() {
-    return String.format(
-        "User[style='%s',]",
-        style);
+  
+  public String getName() {
+    return name;
   }
-  public String getStyle() {
-    return this.style;
-  }
-  public String getmuscleGroup() {
-    return this.muscleGroup;
-  }
+  
 }
