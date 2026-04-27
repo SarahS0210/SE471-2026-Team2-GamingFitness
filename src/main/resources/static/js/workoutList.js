@@ -11,8 +11,8 @@ class WorkoutList {
         this.completed = false;
     }
 
-    setName(name) {
-        this.name = name;
+    async setName(name) {
+        this.name = await fetch("http://localhost:8080/api/workouts");
     }
 
     setOnExerciseChange(callback) {
