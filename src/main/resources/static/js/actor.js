@@ -429,3 +429,14 @@ class Background {
             this.cur_frame = 0;
     }
 }
+// ========= Builder Integration =========
+async function createActor(name, workoutStyle) {
+    const response = await fetch('/actors/starter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, workoutStyle })
+    });
+    const actor = await response.json();
+    console.log(actor);
+    return actor;
+}
