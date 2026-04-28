@@ -2,7 +2,7 @@ package com.example.servingwebcontent;
 import java.util.ArrayList;
 import java.util.List;
 
-
+"""
 public class CardioLevel1 extends WorkoutProgram {
     private static List<Exercise> workouts = new ArrayList<>();
 
@@ -58,4 +58,27 @@ public class CardioLevel1 extends WorkoutProgram {
         //User presses space bar to exit
     }
 
+}
+"""
+
+public class CardioLevel1 extends WorkoutProgram {
+    public CardioLevel1() {
+        addWorkouts("Warm up: 2 x 10 Burpees");
+        addWorkouts("5 Minute Medicine Ball Slams");
+        addWorkouts("3 Minute Jump Rope");
+        addWorkouts("15 Minutes Slow Incline Treadmill");
+        addWorkouts("50 Jumping Jacks");
+    }
+
+    @Override
+    protected void displayExercise(Exercise e) {
+        System.out.println("Current Exercise: " + e.getName());
+        System.out.println("Press SPACE to continue to the next exercise");
+    }
+
+    @Override
+    protected void setup() {
+        System.out.println("=== CARDIO LEVEL 1 ===");
+        System.out.println("GET READY!");
+    }
 }
