@@ -1,18 +1,35 @@
 package  com.example.servingwebcontent;
 import javax.sound.sampled.*;
+import java.util.ArrayList;
+import java.util.List;
 
-abstract public class WorkoutProgram {
-    public abstract void firstWorkout();
-    public abstract void secondWorkout();
-    public abstract void thirdWorkout();
-    public abstract void fourthWorkout();
-    public abstract void fifthWorkout();
-    public void runWorkoutSequence() {
-        firstWorkout();
-        secondWorkout();
-        thirdWorkout();
-        fourthWorkout();
-        fifthWorkout();
+public abstract class WorkoutProgram {
+
+    private final List<Exercise> workouts = new ArrayList<>();
+
+    public final void runWorkoutSequence() {
+        setup();
+        for (Exercise e : workouts) {
+            displayExercise(e);
+        }
+        cooldown();
     }
 
+    protected void setup() {
+        System.out.println("Starting Workout");
+    }
+
+    protected abstract void displayExercise(Exercise e);
+
+    protected void cooldown() {
+        System.out.println("Workout Complete! Take a quick rest.");
+    }
+
+    protected void addExercise(String name) {
+        workouts.add(new Exercise(name));
+    }
+
+    protected List<Exercise> getWorkouts() {
+        return workouts;
+    }
 }

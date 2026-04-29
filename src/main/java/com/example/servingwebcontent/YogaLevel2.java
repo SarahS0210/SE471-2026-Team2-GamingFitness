@@ -1,62 +1,23 @@
 package com.example.servingwebcontent;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class YogaLevel2 extends WorkoutProgram {
-     private List<Exercise> workoutList = new ArrayList<>();
-
     public YogaLevel2() {
-        
-    }
-
-    public void addExercise(String name) {
-        Exercise e = new Exercise(name);
-        workoutList.add(e);
-    }
-
-    @Override public void runWorkoutSequence() {
-        firstWorkout();
-        secondWorkout();
-        thirdWorkout();
-        fourthWorkout();
-        fifthWorkout();
-    }
-
-
-    @Override
-    public void firstWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
+        addExercise("Warrior II 30 Seconds Each Side");
+        addExercise("Downward Dog 1 Minute");
+        addExercise("Low Lunge 30 Seconds Each Side");
+        addExercise("Seated Forward Fold 30 Seconds");
+        addExercise("Plank As Long As Possible");
     }
 
     @Override
-    public void secondWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
+    protected void displayExercise(Exercise e) {
+        System.out.println("Current Exercise: " + e.getName());
+        System.out.println("Press SPACE to continue to the next exercise");
     }
 
     @Override
-    public void thirdWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
+    protected void setup() {
+        System.out.println("=== Yoga Level 2 ===");
+        System.out.println("GET READY!");
     }
-
-    @Override
-    public void fourthWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-
-    @Override
-    public void fifthWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-    
-
 }
-
-
-
-

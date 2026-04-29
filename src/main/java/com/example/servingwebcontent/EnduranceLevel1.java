@@ -1,60 +1,20 @@
 package com.example.servingwebcontent;
-import java.util.ArrayList;
-import java.util.List;
 
-public class EnduranceLevel1 extends WorkoutProgram { 
-    private static List<Exercise> workouts = new ArrayList<>();
-    
-
+public class EnduranceLevel1  extends WorkoutProgram {
     public EnduranceLevel1() {
-       addExercise("5-10 Min Warm Up");
-       addExercise("2 x 15 Squat (Bodyweight");
-       
-    }
-
-
-    public static void addExercise(String name) {
-        Exercise e = new Exercise(name);
-        workouts.add(e);
+        addExercise("1 Mile Run");
+        addExercise("2 x 15 Squat (Bodyweight)");
     }
 
     @Override
-    public void runWorkoutSequence() {
-        firstWorkout();
-        secondWorkout();
-        thirdWorkout();
-        fourthWorkout();
-        fifthWorkout();
+    protected void displayExercise(Exercise e) {
+        System.out.println("Exercise Workout: " + e.getName());
+        System.out.println("Press SPACE to continue to the next exercise");
     }
 
     @Override
-    public void firstWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
+    protected void setup() {
+        System.out.println("=== Endurance Level 1 ===");
+        System.out.println("GET READY!");
     }
-
-    @Override
-    public void secondWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-
-    @Override
-    public void thirdWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-
-    @Override
-    public void fourthWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-
-    @Override
-    public void fifthWorkout() {
-        //Display the name of the workout
-        //User presses space bar to exit
-    }
-    
 }

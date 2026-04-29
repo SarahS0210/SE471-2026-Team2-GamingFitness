@@ -11,8 +11,15 @@ class WorkoutList {
         this.completed = false;
     }
 
-    async setName(name) {
-        this.name = await fetch("http://localhost:8080/api/workouts");
+    async loadFromBackend(style, level) {
+        try {
+            const res = await fetch(`http://localhost:8080/api/workouts?style=${style}&level=${level}`);
+            const data = await res.json();
+            this.exercises = data.map(e => e.name);
+            this.name = `${style} Level ${level}`;
+        } catch (err) {
+            console.error("Failed to load workout from backend:", err);
+        }
     }
 
     setOnExerciseChange(callback) {
@@ -48,7 +55,6 @@ class WorkoutList {
         this.displayedText = "";
         this.textCharIndex = 0;
     }
-    
 
     updateText() {
         if (Date.now() - this.lastTextUpdate > this.textDisplayInterval && this.textCharIndex < this.currentText.length) {
