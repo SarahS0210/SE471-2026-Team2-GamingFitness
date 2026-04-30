@@ -1,23 +1,24 @@
 package com.example.servingwebcontent;
+import java.util.ArrayList;
+import java.util.List;
 
-public class StrengthLevel2 extends WorkoutProgram {
+public class StrengthLevel2 implements WorkoutReadOnlyIF {
+    private List<String> workoutList = new ArrayList<>();
+
     public StrengthLevel2() {
-        addExercise("Warm up with Arm circles 10 reps each side");
-        addExercise("3 x 10 Dips Bodyweight");
-        addExercise("4 x 10 Pullups");
-        addExercise("3 x 12 Barbell Squat");
-        addExercise("3 x 15 Lateral Raises");
+        addWorkout("Warm up with Arm circles 10 reps each side");
+        addWorkout("3 x 10 Dips Bodyweight");
+        addWorkout("4 x 10 Pullups");
+        addWorkout("3 x 12 Barbell Squat");
+        addWorkout("3 x 15 lateral Raises");
+    }
+    
+
+    public void addWorkout(String name) {
+        workoutList.add(name);
     }
 
-    @Override
-    protected void displayExercise(Exercise e) {
-        System.out.println("Current Exercise: " + e.getName());
-        System.out.println("Press SPACE to continue to the next exercise");
-    }
-
-    @Override
-    protected void setup() {
-        System.out.println("=== Strength Level 2 ===");
-        System.out.println("GET READY!");
+    public List<String> getWorkouts() {
+        return workoutList;
     }
 }

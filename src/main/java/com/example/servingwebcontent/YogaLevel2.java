@@ -1,23 +1,24 @@
 package com.example.servingwebcontent;
+import java.util.ArrayList;
+import java.util.List;
 
-public class YogaLevel2 extends WorkoutProgram {
+public class YogaLevel2 implements WorkoutReadOnlyIF {
+   private List<String> workoutList = new ArrayList<>();
+
     public YogaLevel2() {
-        addExercise("Warrior II 30 Seconds Each Side");
-        addExercise("Downward Dog 1 Minute");
-        addExercise("Low Lunge 30 Seconds Each Side");
-        addExercise("Seated Forward Fold 30 Seconds");
-        addExercise("Plank As Long As Possible");
+        addWorkout("Child's Pose 1 Minute");
+        addWorkout("Cat Cow 1 Minute");
+        addWorkout("Warrior II 30 Seconds Each Side");
+        addWorkout("Downward Dog 1 Minute");
+        addWorkout("Low lunge 30 Seconds Each Side");
+    }
+    
+
+    public void addWorkout(String name) {
+        workoutList.add(name);
     }
 
-    @Override
-    protected void displayExercise(Exercise e) {
-        System.out.println("Current Exercise: " + e.getName());
-        System.out.println("Press SPACE to continue to the next exercise");
-    }
-
-    @Override
-    protected void setup() {
-        System.out.println("=== Yoga Level 2 ===");
-        System.out.println("GET READY!");
+    public List<String> getWorkouts() {
+        return workoutList;
     }
 }

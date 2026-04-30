@@ -309,7 +309,7 @@
 
             workout.setName("Endurance Workout - Level " + level);
             workout.exercises = [];
-
+            
             if (level === 1) {
                 workout.setName("Endurance Workout Level 1");
                 workout.addExercise("5-10 Min Warm Up");
@@ -370,6 +370,7 @@
             workout.exercises = [];
 
             if (level === 1) {
+        
                  workout.setName("Strength Workout Level 1");
                 workout.addExercise("Warm up with Arm circles 10 reps each side");
                 workout.addExercise("3 x 12 Pushups");
@@ -425,16 +426,17 @@
             get_player("PowerGolem");
             SummonHorde1("MightGolem");
 
-            workout.setName("Yoga Workout - Level " + level);
+         //   workout.setName("Yoga Workout - Level " + level);
             workout.exercises = [];
 
             if (level === 1) {
-                 workout.setName("Yoga Workout Level 1");
+            //    workout.loadFromBackend("Yoga Workout Level 1", level);
+                workout.setName("Yoga Workout Level 1");
                 workout.addExercise("Child's Pose 1 Minute");
                 workout.addExercise("Cat Cow 1 Minute");
                 workout.addExercise("Downward Dog 1 Minute");
                 workout.addExercise("Low lunge 30 Seconds Each Side");
-                workout.addExercise("Seated Forward Fold 30 seconds");
+                workout.addExercise("Seated Forward Fold 30 seconds"); 
             } else if (level === 2) {
                 workout.setName("Yoga Workout Level 2");
                 workout.addExercise("Child's Pose 1 Minute");

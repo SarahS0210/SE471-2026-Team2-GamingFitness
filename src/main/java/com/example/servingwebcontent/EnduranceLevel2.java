@@ -1,23 +1,24 @@
 package com.example.servingwebcontent;
+import java.util.List;
+import java.util.ArrayList;
 
-public class EnduranceLevel2  extends WorkoutProgram {
+public class EnduranceLevel2 implements WorkoutReadOnlyIF {
+     private List<String> workoutList = new ArrayList<>();
+
     public EnduranceLevel2() {
-        addExercise("2 Rile Run");
-        addExercise("3 x 12 Bulgarian Split Squat (Each leg)");
-        addExercise("3 x 15 Push Ups");
-        addExercise("3 x 12 Inverted Row");
-        addExercise("3 x 8 Nordic Hamstring Curls");
+        addWorkout("5-10 Min Warm Up");
+        addWorkout("3 x 12 Bulgarian Split Squat (Each leg");
+        addWorkout("3 x 15 Push Ups");
+        addWorkout("3 x 12 Inverted Row");
+        addWorkout("3 x 8 Nordic Hamstring Curls");
+    }
+    
+
+    public void addWorkout(String name) {
+        workoutList.add(name);
     }
 
-    @Override
-    protected void displayExercise(Exercise e) {
-        System.out.println("Exercise Workout: " + e.getName());
-        System.out.println("Press SPACE to continue to the next exercise");
-    }
-
-    @Override
-    protected void setup() {
-        System.out.println("=== Endurance Level 2 ===");
-        System.out.println("GET READY!");
+    public List<String> getWorkouts() {
+        return workoutList;
     }
 }

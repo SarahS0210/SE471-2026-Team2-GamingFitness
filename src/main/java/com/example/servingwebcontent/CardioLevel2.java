@@ -1,23 +1,24 @@
 package com.example.servingwebcontent;
+import java.util.List;
+import java.util.ArrayList;
 
-public class CardioLevel2 extends WorkoutProgram {
+public class CardioLevel2 implements WorkoutReadOnlyIF {
+     private List<String> workoutList = new ArrayList<>();
+
     public CardioLevel2() {
-        addExercise("Warm up: 2 x 20 Burpees");
-        addExercise("7 Minute Medicine Ball Slams");
-        addExercise("5 Minute Jump Rope");
-        addExercise("20 Minutes Slow Incline Treadmill");
-        addExercise("100 Jumping Jacks");
+        addWorkout("warmup: 2 X 10 jumping knee tucks");
+        addWorkout("5 Minutes Medicine ball slams");
+        addWorkout("3 Minutes Jump Rope");
+        addWorkout("20 minutes incline treadmill");
+        addWorkout("100 jumping jacks");
+    }
+    
+
+    public void addWorkout(String name) {
+        workoutList.add(name);
     }
 
-    @Override
-    protected void displayExercise(Exercise e) {
-        System.out.println("Current Exercise: " + e.getName());
-        System.out.println("Press SPACE to continue to the next exercise.");
-    }
-
-    @Override
-    protected void setup() {
-        System.out.println("=== CARDIO LEVEL 2 ===");
-        System.out.println("GET READY!");
+    public List<String> getWorkouts() {
+        return workoutList;
     }
 }

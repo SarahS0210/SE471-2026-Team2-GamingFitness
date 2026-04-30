@@ -17,6 +17,8 @@ class WorkoutList {
             const data = await res.json();
             this.exercises = data.map(e => e.name);
             this.name = `${style} Level ${level}`;
+            console.log(name);
+            console.log(exercises);
         } catch (err) {
             console.error("Failed to load workout from backend:", err);
         }

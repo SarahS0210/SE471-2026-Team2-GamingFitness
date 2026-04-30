@@ -15,15 +15,15 @@ import java.util.List;
 public class WorkoutProgramController {
 
     @GetMapping
-    public List<Exercise> getWorkouts(@RequestParam String style, @RequestParam int level) {
-        WorkoutProgram program = getProgram(style, level);
+    public List<String> getWorkouts(@RequestParam String style, @RequestParam int level) {
+        WorkoutReadOnlyIF program = getProgram(style, level);
         if (program == null) {
-            return List.of(new Exercise("No workout found for: " + style + " level " + level));
+            return List.of(new String("No workout found for: " + style + " level " + level));
         }
         return program.getWorkouts();
     }
 
-    private WorkoutProgram getProgram(String style, int level) {
+    private WorkoutReadOnlyIF getProgram(String style, int level) {
         return switch (style.toLowerCase()) {
             case "cardio" -> level == 1 ? new CardioLevel1() : new CardioLevel2();
             case "endurance" -> level == 1 ? new EnduranceLevel1() : new EnduranceLevel2();
