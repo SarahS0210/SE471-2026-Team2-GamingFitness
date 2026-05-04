@@ -35,12 +35,17 @@ async function startLevelStrength(level) {
 }
 
 async function startLevelYoga(level) {
+    yogaSong = new Audio('/songs/yoga.mp3');
     $('#levelYoga-select').hide();
     $('#main').hide();
 
     drawables[BACKGROUND].push(new Background('beach', 7));
     get_player("PowerGolem");
     SummonHorde1("MightGolem");
+    
+    yogaSong.muted = false;
+    yogaSong.play();
+    yogaSong.loop = true;
 
     window.workout.exercises = [];
     window.workout.currentExerciseIndex = -1;
