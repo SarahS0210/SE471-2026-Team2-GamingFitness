@@ -139,6 +139,12 @@
     </div>
 
     <script src="js/workoutList.js"></script>
+
+    <!-- fixed by declaring workout as a global before SLF.js loads -->
+    <script>
+        window.workout = new WorkoutList();
+    </script>
+
     <script type="text/javascript" src="js/actor.js"></script>
     <script src="js/signup.js"></script>
     <script src="js/login.js"></script>
