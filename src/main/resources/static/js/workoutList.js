@@ -11,18 +11,18 @@ class WorkoutList {
         this.completed = false;
     }
 
-    async loadFromBackend(style, level) {
-        try {
-            const res = await fetch(`http://localhost:8080/api/workouts?style=${style}&level=${level}`);
-            const data = await res.json();
-            this.exercises = data.map(e => e.name);
-            this.name = `${style} Level ${level}`;
-            console.log(name);
-            console.log(exercises);
-        } catch (err) {
-            console.error("Failed to load workout from backend:", err);
-        }
+async loadFromBackend(style, level) {
+    try {
+        const res = await fetch(`http://localhost:8080/api/workouts?style=${style}&level=${level}`);
+        const data = await res.json();
+        this.exercises = data;
+        this.name = `${style} Level ${level}`;
+        console.log("Loaded workout:", this.name);
+        console.log("Exercises:", this.exercises);
+    } catch (err) {
+        console.error("Failed to load workout from backend:", err);
     }
+}
 
     setOnExerciseChange(callback) {
         this.onExerciseChange = callback;
@@ -39,21 +39,20 @@ class WorkoutList {
 
     nextExercise() {
         if (this.exercises.length === 0) return;
-    
+
         this.currentExerciseIndex++;
-    
+
         if (this.currentExerciseIndex >= this.exercises.length) {
             this.completed = true;
             this.currentText = "Workout Complete!";
         } else {
             this.currentText = this.exercises[this.currentExerciseIndex];
-    
-            // Trigger callback if exists
+
             if (this.onExerciseChange) {
                 this.onExerciseChange(this.currentText);
             }
         }
-    
+
         this.displayedText = "";
         this.textCharIndex = 0;
     }
