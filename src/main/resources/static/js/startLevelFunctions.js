@@ -1,10 +1,15 @@
 async function startLevelEndurance(level) {
+    yogaSong = new Audio('/songs/yoga.mp3');
     $('#levelEndurance-select').hide();
     $('#main').hide();
 
-    drawables[BACKGROUND].push(new Background('desert', 7));
+    drawables[BACKGROUND].push(new Background('beach', 7));
     get_titanic_player("Juggernaut");
     SummonHorde2("SlimeOrc");
+
+    yogaSong.muted = false;
+    yogaSong.play();
+    yogaSong.loop = true;
 
     window.workout.exercises = [];
     window.workout.currentExerciseIndex = -1;
@@ -12,17 +17,22 @@ async function startLevelEndurance(level) {
     window.workout.currentText = "";
     window.workout.displayedText = "";
 
-    await workout.loadFromBackend("endurance", level);
+    await workout.loadFromBackend("Endurance", level);
     workout.nextExercise();
 }
 
 async function startLevelStrength(level) {
+    yogaSong = new Audio('/songs/yoga.mp3');
     $('#levelStrength-select').hide();
     $('#main').hide();
 
-    drawables[BACKGROUND].push(new Background('desert', 7));
+    drawables[BACKGROUND].push(new Background('beach', 7));
     get_titanic_player("Juggernaut");
     SummonHorde2("SlimeOrc");
+
+    yogaSong.muted = false;
+    yogaSong.play();
+    yogaSong.loop = true;
 
     window.workout.exercises = [];
     window.workout.currentExerciseIndex = -1;
@@ -30,7 +40,8 @@ async function startLevelStrength(level) {
     window.workout.currentText = "";
     window.workout.displayedText = "";
 
-    await workout.loadFromBackend("strength", level);
+
+    await workout.loadFromBackend("Strength", level);
     workout.nextExercise();
 }
 
@@ -53,11 +64,12 @@ async function startLevelYoga(level) {
     window.workout.currentText = "";
     window.workout.displayedText = "";
 
-    await workout.loadFromBackend("yoga", level);
+    await workout.loadFromBackend("Yoga", level);
     workout.nextExercise();
 }
 
 async function startLevelCardio(level) {
+    yogaSong = new Audio('/songs/yoga.mp3');
     $('#levelCardio-select').hide();
     $('#main').hide();
 
@@ -65,12 +77,17 @@ async function startLevelCardio(level) {
     get_player("VampiricOverlord");
     SummonHorde3("SpiderCultist");
 
+    yogaSong.muted = false;
+    yogaSong.play();
+    yogaSong.loop = true;
+
     window.workout.exercises = [];
     window.workout.currentExerciseIndex = -1;
     window.workout.completed = false;
     window.workout.currentText = "";
     window.workout.displayedText = "";
 
-    await workout.loadFromBackend("cardio", level);
+
+    await workout.loadFromBackend("Cardio", level);
     workout.nextExercise();
 }

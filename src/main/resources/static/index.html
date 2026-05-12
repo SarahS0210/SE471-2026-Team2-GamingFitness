@@ -139,12 +139,10 @@
     </div>
 
     <script src="js/workoutList.js"></script>
-
-    <!-- fixed by declaring workout as a global before SLF.js loads -->
+     <!-- fixed by declaring workout as a global before SLF.js loads -->
     <script>
         window.workout = new WorkoutList();
     </script>
-
     <script type="text/javascript" src="js/actor.js"></script>
     <script src="js/signup.js"></script>
     <script src="js/login.js"></script>
@@ -162,7 +160,7 @@
 
 
 //===================Minimal POST Request====================== 
-        fetch('http://localhost:8080/app_users', { //making a fetch request to pull all the users
+      /*  fetch('http://localhost:8080/app_users', { //making a fetch request to pull all the users
             method: 'POST', //we have to declare the POST method to use it. A POST creates a new instance, while a PUT request changes whats there
             headers: { 
                 'Content-Type': 'application/json' //declaring content type as json
@@ -176,7 +174,7 @@
         .then(response => response.json())  //this handles the Promise returned by fetch(). Response is the HTTP response object returned from the server, response.json is a method that reads the response body and parses it as JSON. It also returns a Promise with the parsed data
         //.then(data => console.log(data)); //This .then recieves the resolved value from the previous Promise (Previous JSON data). datam is the actual Javascript object parsed from the JSON response. Console.log(data) simply outputs the data to the console.
 
-
+*/
 
 //===================VARIABLES====================== 
         const BACKGROUND = 0;
@@ -199,16 +197,8 @@
         const PROJECTILE_SPEED = 150;
 
         // Workout list setup
-        const workout = new WorkoutList();
-        // workout.setName("Endurance Workout");
-        // workout.addExercise("5-10 Min Warm Up");
-        // workout.addExercise("2 x 15 Squat (Bodyweight)");
-        // workout.addExercise("2 x 12 Kneeling Push Ups");
-        // workout.addExercise("3 x 10 Superman");
-        // workout.addExercise("3 x 12 Glute Bridge");
-        // workout.addExercise("3 x 20 Mountain Climber");
-        // workout.nextExercise();
-
+        
+    
 
 
 //===================WEBSITE FUNCTIONS====================== 
@@ -230,6 +220,7 @@
 
         showAbout = () => {
             /*add show about page stuff*/
+
         }
 
         //show login/signup popup
@@ -255,7 +246,7 @@
 //=======LEVELS=======
 
         // When exercise changes, respawn enemies
-        workout.setOnExerciseChange(() => {
+            workout.setOnExerciseChange(() => {
             // Clear old enemies
             //drawables[FOREGROUND] = drawables[FOREGROUND].filter(d => d.role !== "ENEMY");
 
@@ -304,7 +295,7 @@
             // console.log("FUNCTION: game() /IS RUNNING")
         }
 
-        //START LEVEL
+
 
         Strength = () => {
             $('#main').hide();
@@ -329,7 +320,7 @@
             */
         }
 
-        //START LEVEL
+      
 
 //---------------------
 
@@ -355,8 +346,7 @@
             */
         }
 
-        //START LEVEL
-
+       
         Cardio = () => {
             $('#main').hide();
             $('#selection-screen').hide();
@@ -379,7 +369,6 @@
             */
         }
 
-        //START LEVEL
 
 //====================
 
@@ -396,6 +385,7 @@
             const charHeight = 500;
 
             const y = (canvas.height / 2) - (charHeight / 2);
+            
 
             const Player = new Actor(sprite,animdata, 1, y, 0, charHeight, 0, "Idle","False","True","PLAYER");
 
@@ -540,27 +530,9 @@
             // Draw workout textbox
             workout.updateText();
             workout.draw(context, canvas);
-
             
-
-            // Minimal PUT request
-            fetch('http://localhost:8080/app_users/1', { //making a fetch request to pull all the users
-                method: 'PUT', //we have to declare the POST method to use it. A POST creates a new instance, while a PUT request changes whats there
-                //method: 'PATCH',
-                headers: { 
-                'Content-Type': 'application/json' //declaring content type as json
-              },
-              body: JSON.stringify({ //this is setting up the JSON we want to pass
-                userName: 'Frodo_Baggins', //this sets up the user's userName
-                password: 'Shire', //setting password, NOT SECURE JUST A TEST
-                style: 'BodyBuilding', //setting user style
-                shots: SHOTS
-              })
-            })
-              .then(response => response.json())  //this handles the Promise returned by fetch(). Response is the HTTP response object returned from the server, response.json is a method that reads the response body and parses it as JSON. It also returns a Promise with the parsed data
-              //.then(data => console.log(data)); //This .then recieves the resolved val
         }
-
+              
         // Load next exercise
         
         /*

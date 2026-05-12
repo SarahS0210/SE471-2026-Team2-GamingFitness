@@ -1,6 +1,6 @@
 package com.example.servingwebcontent;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardioLevel1 implements WorkoutReadOnlyIF {
    private List<String> workoutList = new ArrayList<>();
@@ -18,6 +18,7 @@ public class CardioLevel1 implements WorkoutReadOnlyIF {
         workoutList.add(name);
     }
 
+    @Override
     public List<String> getWorkouts() {
         return workoutList;
     }

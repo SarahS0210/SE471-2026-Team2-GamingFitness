@@ -28,14 +28,6 @@ async loadFromBackend(style, level) {
         this.onExerciseChange = callback;
     }
 
-    addExercise(exercise) {
-        if (typeof exercise == "string" && exercise.trim() !== "") {
-            this.exercises.push(exercise);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     nextExercise() {
         if (this.exercises.length === 0) return;
