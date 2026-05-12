@@ -376,6 +376,10 @@
         //Gathers animation data for select sprites and pushes each as an Actor
         get_player = async (sprite) => {
 
+             // ── Builder Pattern integration ──────────────────
+            const actorData = await createActor(sprite, window.selectedWorkout || "cardio");
+            console.log("Actor built by Java Builder:", actorData);
+
             //Grabs the Players sprites from the json, sets as actor
             let animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
             let animdata = await animdataxhr.json()
