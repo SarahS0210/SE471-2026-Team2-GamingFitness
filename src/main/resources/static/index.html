@@ -20,7 +20,6 @@
             <div id="logo">Gaming Fitness</div>
             <div id="nav-links">
                 <span id="user-display"></span>
-                <button class="nav-button" onclick="showAbout()">About Us</button>
                 <button class="nav-button" id="auth-button" onclick="showLogin()">Login / Signup</button>                
             </div>
         </nav>
@@ -218,10 +217,7 @@
             console.log("FUNCTION: showSelectionScreen() / IS RUNNING");
         }
 
-        showAbout = () => {
-            /*add show about page stuff*/
 
-        }
 
         //show login/signup popup
         showLogin = () => {
@@ -389,7 +385,7 @@
             const charHeight = 500;
 
             const y = (canvas.height / 2) - (charHeight / 2);
-            
+
 
             const Player = new Actor(sprite,animdata, 1, y, 0, charHeight, 0, "Idle","False","True","PLAYER");
 
@@ -406,6 +402,10 @@
 
         //Gathers animation data for select sprites and pushes each as an Actor
         get_titanic_player = async (sprite) => {
+
+              // ── Builder Pattern integration ──────────────────
+            const actorData = await createActor(sprite, window.selectedWorkout || "cardio");
+            console.log("Actor built by Java Builder:", actorData);
 
             //Grabs the Players sprites from the json, sets as actor
             let animdataxhr = await fetch("sprites/" + sprite + "/animationData.json")
